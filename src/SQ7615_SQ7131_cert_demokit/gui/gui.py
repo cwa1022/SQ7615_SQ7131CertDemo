@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QComboBox, QTextEdit, QPushButton, QSpacerItem, QSizePolicy, QLabel,QTabWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QComboBox, QTextEdit, QPushButton, QSpacerItem, QSizePolicy, QLabel,QTabWidget, QCheckBox
 from PyQt5.QtCore import QTimer
 
 class MyPage(QWidget):
@@ -14,13 +14,26 @@ class MyPage(QWidget):
         # ===== 左邊 Combo1 + 色塊 (上下排列) =====
         left_widget = QWidget()
         left_group = QVBoxLayout(left_widget)
+
+
         self.combo1 = QComboBox()
         self.combo1.addItems(["選項一", "選項二", "選項三"])
         self.combo1.setMinimumWidth(200)
         left_group.addWidget(self.combo1)
 
-        color_layout1 = QHBoxLayout()
-        color_layout1.addStretch()
+
+
+        InfoLayoutL = QHBoxLayout()
+        InfoLayoutL.addStretch()
+
+        self.checkBoxClient = QCheckBox("Client")
+        self.checkBoxServer = QCheckBox("Server")
+
+        InfoLayoutL.addWidget(self.checkBoxClient)
+        InfoLayoutL.addWidget(self.checkBoxServer)
+
+        InfoLayoutL.addStretch(1)
+
         self.color_labels1 = []
         for _ in range(3):
             color_label = QLabel()
@@ -31,9 +44,14 @@ class MyPage(QWidget):
                 border: 1px solid #333;
             """)
             self.color_labels1.append(color_label)
-            color_layout1.addWidget(color_label)
-        left_group.addLayout(color_layout1)
+            InfoLayoutL.addWidget(color_label)
+
+        left_group.addLayout(InfoLayoutL)
         combo_group_layout.addWidget(left_widget)
+
+
+
+
 
         # ===== 右邊 Combo2 + 色塊 (上下排列) =====
         right_widget = QWidget()
@@ -43,8 +61,20 @@ class MyPage(QWidget):
         self.combo2.setMinimumWidth(200)
         right_group.addWidget(self.combo2)
 
-        color_layout2 = QHBoxLayout()
-        color_layout2.addStretch()
+
+
+        InfoLayoutR = QHBoxLayout()
+        InfoLayoutR.addStretch()
+
+        self.checkBoxClient = QCheckBox("Client")
+        self.checkBoxServer = QCheckBox("Server")
+
+        InfoLayoutR.addWidget(self.checkBoxClient)
+        InfoLayoutR.addWidget(self.checkBoxServer)
+
+
+        InfoLayoutR.addStretch(1)
+
         self.color_labels2 = []
         for _ in range(3):
             color_label = QLabel()
@@ -55,8 +85,11 @@ class MyPage(QWidget):
                 border: 1px solid #333;
             """)
             self.color_labels2.append(color_label)
-            color_layout2.addWidget(color_label)
-        right_group.addLayout(color_layout2)
+            InfoLayoutR.addWidget(color_label)
+
+
+
+        right_group.addLayout(InfoLayoutR)
         combo_group_layout.addWidget(right_widget)
 
         layout.addLayout(combo_group_layout)
@@ -70,8 +103,8 @@ class MyPage(QWidget):
         # 右下按鈕
         button_layout = QHBoxLayout()
         button_layout.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
-        btn1 = QPushButton("確定")
-        btn2 = QPushButton("取消")
+        btn1 = QPushButton("Establish Connection")
+        btn2 = QPushButton("Cancel")
         button_layout.addWidget(btn1)
         button_layout.addWidget(btn2)
         layout.addLayout(button_layout)
