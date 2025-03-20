@@ -76,7 +76,7 @@ class MyPage(QWidget):
         button_layout.addWidget(btn2)
         layout.addLayout(button_layout)
 
-    # ✅ 公用方法：獨立改色
+    # 公用方法：獨立改色
     def change_color(self, group, index, color):
         if group == 1 and 0 <= index < len(self.color_labels1):
             self.color_labels1[index].setStyleSheet(
@@ -109,14 +109,15 @@ class MyApp(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('SQ7615+SQ7131 驗證工具')
-        self.setFixedSize(800, 600)
+        
+        self.setMinimumSize(400, 300)
 
         main_layout = QVBoxLayout(self)
 
         # 底部的 QTabWidget
         tabs = QTabWidget()
 
-        # ✅ 關鍵：self.page1 實例化保存起來
+        # 關鍵：self.page1 實例化保存起來
         self.page1 = MyPage("頁面一")
         tabs.addTab(self.page1, "驗證")
         tabs.addTab(MyPage2("頁面二"), "尚未開放")
@@ -125,7 +126,10 @@ class MyApp(QWidget):
 
         main_layout.addWidget(tabs)
 
-    # ✅ 加轉接 change_color
+        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+
+
+    # 加轉接 change_color
     def change_color(self, group, index, color):
         self.page1.change_color(group, index, color)
         
