@@ -1,0 +1,16 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Virtual environments
+venv/
+env/
+*.egg-info/
+
+# Log files
+*.log
+
+
+# VS Code
+.vscode/
